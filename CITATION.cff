@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+title: >-
+  Verification scripts for "The resource cost of magic in a code block"
+message: >-
+  If you use these scripts, please cite the paper they accompany.
+type: software
+authors:
+  - family-names: Shen
+    given-names: Jiachen
+    affiliation: >-
+      Department of Electrical and Computer Engineering,
+      University of Houston
+    email: jshen28@cougarnet.uh.edu
+  - family-names: Zhong
+    given-names: Hui
+    affiliation: >-
+      Department of Electrical and Computer Engineering,
+      University of Houston
+    email: hzhongzg@gmail.com
+license: MIT
+repository-code: >-
+  https://github.com/Mercury0828/magic-cultivation-artifact
+abstract: >-
+  Scripts that check the numerical statements of the paper "The resource cost of
+  magic in a code block": the one-qubit norm constants and the normalisation
+  lemma, the two combinatorial facts about the rotated surface code behind the
+  standard-round proposition, the accepted effect of the split-readout family,
+  and the closed forms and asymptotics of the weak-string protocol.
+keywords:
+  - quantum error correction
+  - surface code
+  - resource theory of magic
+  - magic state cultivation
+preferred-citation:
+  type: article
+  title: The resource cost of magic in a code block
+  authors:
+    - family-names: Shen
+      given-names: Jiachen
+    - family-names: Zhong
+      given-names: Hui
+  year: 2026
