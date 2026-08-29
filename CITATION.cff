@@ -17,7 +17,17 @@ authors:
       Department of Electrical and Computer Engineering,
       University of Houston
     email: hzhongzg@gmail.com
+version: 1.0.0
+date-released: '2026-08-29'
 license: MIT
+doi: 10.5281/zenodo.22162937
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22162937
+    description: Concept DOI, resolves to the latest version
+  - type: doi
+    value: 10.5281/zenodo.22162938
+    description: DOI of version v1.0.0
 repository-code: >-
   https://github.com/Mercury0828/magic-cultivation-artifact
 abstract: >-

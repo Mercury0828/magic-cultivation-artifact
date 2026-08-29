@@ -1,5 +1,13 @@
 # Verification scripts for *The resource cost of magic in a code block*
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22162937.svg)](https://doi.org/10.5281/zenodo.22162937)
+
+Archived on Zenodo. The concept DOI
+[10.5281/zenodo.22162937](https://doi.org/10.5281/zenodo.22162937) always resolves
+to the latest version; [10.5281/zenodo.22162938](https://doi.org/10.5281/zenodo.22162938)
+is v1.0.0, which is the version the paper cites and the one its quoted numbers
+were produced from.
+
 This repository holds the scripts that check the numerical statements made in the
 paper. Every analytic result in the paper is proved there; nothing here is a
 premise of any proof. What these scripts do is confirm the closed forms, the
@@ -67,5 +75,9 @@ LICENSE
 
 ## Citing
 
-If you use these scripts, please cite the paper. `CITATION.cff` carries the
-metadata.
+If you use these scripts, please cite the paper, and cite the archive as
+
+> Shen, J. and Zhong, H. *Verification scripts for "The resource cost of magic in
+> a code block"*, v1.0.0, Zenodo, 2026. doi:10.5281/zenodo.22162938
+
+`CITATION.cff` carries the machine-readable metadata.
