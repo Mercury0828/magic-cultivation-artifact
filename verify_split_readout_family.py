@@ -201,5 +201,52 @@ for name, S in cases:
           % (name, abs(alpha), abs(beta), pacc, Ds, e1, e2, e3,
              "ok" if (ok and ok_sign) else "MISMATCH"))
 
+
+# ---------------------------------------------------------------- genericity
+# The proposition also claims that once the marked set contains a logical support,
+# the three failure conditions alpha = 0, beta = 0, |alpha| = |beta| confine the
+# angles to a measure-zero set. Sample and count how often magic actually fails.
+print()
+print("genericity: random angles on a marked set containing a logical support")
+S = sorted(np.flatnonzero(zsup).tolist())
+rng2 = np.random.default_rng(2026)
+TRIALS = 3000
+zero = 0
+worst = np.inf
+for _ in range(TRIALS):
+    thetas = {q: float(rng2.uniform(-np.pi / 2 + 1e-3, np.pi / 2 - 1e-3)) for q in S}
+    alpha = 0j
+    beta = 0j
+    for k in range(len(S) + 1):
+        for T in itertools.combinations(S, k):
+            if syndrome_of_Z(HX, T, n) != tuple([0] * HX.shape[0]):
+                continue
+            c = 1.0 + 0j
+            for q in S:
+                c *= (1j * np.sin(thetas[q])) if q in T else np.cos(thetas[q])
+            u = np.zeros(n, dtype=np.uint8)
+            for q in T:
+                u[q] ^= 1
+            r, _ = rank2(np.vstack([HZ, u[None, :]]))
+            if r == rz:
+                alpha += c
+            else:
+                beta += c
+    A = alpha * np.eye(2, dtype=complex) + beta * Zbar
+    FA = A.conj().T @ ((np.eye(2, dtype=complex) + Xbar) / 2) @ A
+    _, ds = dstab(FA)
+    worst = min(worst, ds)
+    if ds <= 1e-12:
+        zero += 1
+print("   %d random angle vectors, %d with zero magic, smallest magic %.3e"
+      % (TRIALS, zero, worst))
+if zero:
+    print("   MISMATCH: the failure set is supposed to have measure zero")
+    FAIL = True
+else:
+    print("   none of the sampled angles fell in the failure set, as the measure-zero")
+    print("   claim predicts; the pi/4 case above shows the set is nonempty")
+
+print()
 print("NOTE: direct 2^9 state-vector simulation at d=3 only.")
 sys.exit(1 if FAIL else 0)
