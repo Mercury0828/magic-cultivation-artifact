@@ -238,6 +238,7 @@ for _ in range(TRIALS):
     worst = min(worst, ds)
     if ds <= 1e-12:
         zero += 1
+print("   angles drawn uniformly from (-pi/2, pi/2), endpoints trimmed by 1e-3")
 print("   %d random angle vectors, %d with zero magic, smallest magic %.3e"
       % (TRIALS, zero, worst))
 if zero:

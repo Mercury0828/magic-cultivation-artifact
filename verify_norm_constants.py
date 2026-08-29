@@ -157,4 +157,28 @@ if abs(l1 - 1.28) > 5e-4:
 else:
     print("   agrees with the quoted 1.28")
 
+
+def two_filter_l1(a, b):
+    c = (1 + a ** 2) * (1 + b ** 2)
+    return abs(2 * a * (1 + b ** 2) / c) + abs(2 * b * (1 - a ** 2) / c)
+
+
+# the paper also says the norm approaches sqrt(2) over the family and returns to
+# exactly 1 at the projective endpoint a = b = 1
+end = two_filter_l1(1.0, 1.0)
+print("   at a=b=1 both filters are projective and the l1 norm is %.6f" % end)
+if abs(end - 1.0) > 1e-12:
+    print("   MISMATCH: the projective endpoint should give exactly 1")
+    fail = True
+
+grid = np.linspace(0.0, 1.0, 2001)
+sup = max(two_filter_l1(a, b) for a in grid for b in grid)
+print("   sup over a,b in [0,1]^2 of the l1 norm = %.6f   (sqrt2 = %.6f)"
+      % (sup, np.sqrt(2)))
+print("   the supremum is approached at the boundary b -> 1, where the Z filter")
+print("   stops being a weak non-projective filter, so sqrt2 bounds the family")
+if sup > np.sqrt(2) + 1e-9 or sup < np.sqrt(2) - 1e-3:
+    print("   MISMATCH against the quoted sqrt2 limit")
+    fail = True
+
 sys.exit(1 if fail else 0)
